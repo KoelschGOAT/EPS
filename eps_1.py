@@ -3,7 +3,6 @@ import os
 import time
 
 
-
 class EPSAccount(Account):
     _account_list = []
     _balance_list = []
@@ -11,6 +10,9 @@ class EPSAccount(Account):
     def create_account(self):
         num = Account.create_number(self)
         pin = Account.create_pin(self)
+        num = num.strip()
+        pin = pin.strip()
+        # Create a Tuple inside list with number and pin
         self._account_list.append((num, pin))
         self._balance_list.append((num, self.balance))
         # print(f"Accounts: {self._account_list}")
@@ -24,18 +26,21 @@ Pin: {pin}
     def Login(self):
         self.login_num = ""
         if len(self._account_list) > 0:
-            while True:
-                num_input = input("Please Input your Account Number: ")
-                pin_input = input("Please Input your Pin: ")
-                # Compare input to existing Accounts in Account List
-                for index, item in enumerate(self._account_list):
-                    if item[0] == num_input:
-                        if item[1] == pin_input:
-                            print("Login Login successfull")
-                            self.login_num = num_input
-                            return True
+            try:
+                while True:
+                    num_input = input("Please Input your Account Number: ")
+                    pin_input = input("Please Input your Pin: ")
+                    # Compare input to existing Accounts in Accounts List
+                    for index, item in enumerate(self._account_list):
+                        if item[0] == num_input or int(item[0]) == int(num_input):
+                            if item[1] == pin_input:
+                                print("Login Login successfull")
+                                self.login_num = num_input.zfill(8)
+                                return True
+                    print("Login failed, Account Details invalid")
 
-                print("Login failed, Account Details invalid")
+            except Exception:
+                print("invalid Input")
         print("No Account created")
         time.sleep(2)
         os.system('cls')
@@ -53,11 +58,11 @@ Pin: {pin}
         end2 = True
         while end1:
             menu_input = input("""Willkommen in EPS:
-1. Create Account
-2. Login Account
-0. Exit
+    1. Create Account
+    2. Login Account
+    0. Exit
 
- >> """)
+    >> """)
             if menu_input == "1":
                 self.create_account()
                 continue
@@ -67,11 +72,11 @@ Pin: {pin}
                     os.system('cls')
                     while end2:
                         menu2_input = input(f"""Logged in as: {self.login_num}
-1. show balance
-2. Logout
-0. Exit
+    1. show balance
+    2. Logout
+    0. Exit
 
- >> """)
+     >> """)
                         if menu2_input == "1":
                             self.Balance()
                             continue
