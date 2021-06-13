@@ -1,7 +1,7 @@
 from esp_base import Account
 import os
 import time
-import keyboard
+
 
 
 class EPSAccount(Account):
@@ -71,7 +71,7 @@ Pin: {pin}
 2. Logout
 0. Exit
 
->> """)
+ >> """)
                         if menu2_input == "1":
                             self.Balance()
                             continue
