@@ -2,7 +2,7 @@ import secrets
 import string
 
 
-class Account():
+class Account:
     def __init__(self):
         self.ban = 0
         self.pin = 0
