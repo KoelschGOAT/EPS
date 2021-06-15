@@ -1,4 +1,4 @@
-from esp_base import Account
+from eps_base import Account
 from database import DatabaseInterface
 import os
 import time
@@ -19,7 +19,7 @@ class EPSAccount(Account, DatabaseInterface):
         # Create a Tuple inside list with number and pin
         self.account_list.append((num, pin))
         self.balance_list.append((num, super().show_balance()))
-        super().execute(super().add_user_to_account(num, pin, super().show_balance()))
+        super().add_user_to_account(num, pin, super().show_balance())
         # print(f"Accounts: {self._account_list}")
         # print(f"Account balances: {self._balance_list}")
         os.system('cls')

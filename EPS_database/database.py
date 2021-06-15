@@ -17,7 +17,7 @@ class DatabaseInterface:
         return self.cursor
 
     def create_table(self):
-        return """CREATE TABLE IF NOT EXISTS Accounts(Personal_Number TEXT PRIMARY KEY NOT NULL, PIN TEXT, Balance Decimal(6,2))"""
+        return self.execute_table("CREATE TABLE IF NOT EXISTS Accounts(Personal_Number TEXT PRIMARY KEY NOT NULL, PIN TEXT, Balance Decimal(6,2))")
 
     def change_balance(self, ban, balance):
         """ Assigns a league_id to a user which is a foreign key """

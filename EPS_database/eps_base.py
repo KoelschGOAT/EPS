@@ -9,7 +9,6 @@ class Account:
         self.balance = 0
         self.counter = 0
         self.choice = ""
-
     def create_pin(self):
         pin = ""
         breakk = True
@@ -38,7 +37,7 @@ class Account:
                 print("Invalid input")
         self.balance += amount_to_add
         return self.balance
-
+    
 if __name__ == "__main__":
     a = Account()
     print(a.create_number())
