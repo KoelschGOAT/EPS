@@ -28,35 +28,30 @@ Pin: {pin}
 
     def Login(self):
         self.login_num = ""
-        if len(self.account_list) > 0:
-            try:
-                while True:
-                    num_input = input("Please Input your Account Number: ")
-                    pin_input = input("Please Input your Pin: ")
-                    num = num.strip()
-                    pin = pin.strip()
-                    # Compare input to existing Accounts in Accounts List
-                    for item in self.account_list:
-                        if item[0] == num_input or int(item[0]) == int(num_input):
-                            if item[1] == pin_input:
-                                print("Login Login successfull")
-                                self.login_num = num_input.zfill(8)
-                                return True
-                    print("Login failed, Account Details invalid")
-
-            except Exception:
-                print("invalid Input")
-        print("No Account created")
+        while True:
+            num = input("Please Input your Account Number: ")
+            pin = input("Please Input your Pin: ")
+            num = num.strip()
+            pin = pin.strip()
+            # Compare input to existing Accounts in Accounts List
+            
+            if super().login(num, pin).fetchone():
+                print("Login Successfully")
+                self.login_num = num
+                
+                return True
+            else:
+                print("Login failed, Account Details invalid")
+ 
         time.sleep(2)
         os.system('cls')
 
     def Balance(self):
-        if self.login_num != "":
-            for item in self.balance_list:
-                if item[0] == self.login_num:
-                    print(f"Your current Balance is: {item[1]}\n")
-                    time.sleep(2)
-                    return
+        self.balance = super().get_balance(self.login_num).fetchone()
+        self.balance = self.balance[0] + self.balance[1]
+        print(f"Your current Balance is: {self.balance}\n")
+        time.sleep(2)
+        return
 
     def main(self):
         super().create_table()

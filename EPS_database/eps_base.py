@@ -8,7 +8,7 @@ class Account(DatabaseInterface):
         super().__init__()
         self.ban = 0
         self.pin = 0
-        self.balance = 0
+        self.balance = 0.0
         self.counter = 0
         self.choice = ""
     def create_pin(self):
@@ -37,5 +37,5 @@ if __name__ == "__main__":
     print(a.create_number())
     print(a.create_pin())
     print(f"Your Current Balance: {a.show_balance()}€")
-    a.add_to_balance()
+    
     print(f"Your Current Balance: {a.show_balance()}€")
