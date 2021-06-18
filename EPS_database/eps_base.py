@@ -1,9 +1,11 @@
 import secrets
 import string
+from database import DatabaseInterface
 
 
-class Account:
+class Account(DatabaseInterface):
     def __init__(self):
+        super().__init__()
         self.ban = 0
         self.pin = 0
         self.balance = 0
@@ -28,15 +30,7 @@ class Account:
     def show_balance(self):
         print(self.balance)
         return self.balance
-    def add_to_balance(self):
-        while True:
-            try:
-                amount_to_add = float(input("Please Enter the Amount you want to add in Euros: "))
-                break
-            except Exception:
-                print("Invalid input")
-        self.balance += amount_to_add
-        return self.balance
+
     
 if __name__ == "__main__":
     a = Account()

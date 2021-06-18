@@ -4,21 +4,19 @@ import os
 import time
 import sqlite3
 
-class EPSAccount(Account, DatabaseInterface):
+class EPSAccount(Account):
 
     def __init__(self):
         super().__init__()
         self.account_list = []
         self.balance_list = []
+        self.login_num = ""
 
     def create_account(self):
         num = super().create_number()
         pin = super().create_pin()
-        num = num.strip()
-        pin = pin.strip()
-        # Create a Tuple inside list with number and pin
-        self.account_list.append((num, pin))
-        self.balance_list.append((num, super().show_balance()))
+        #self.account_list.append((num, pin))
+        #self.balance_list.append((num, super().show_balance()))
         super().add_user_to_account(num, pin, super().show_balance())
         # print(f"Accounts: {self._account_list}")
         # print(f"Account balances: {self._balance_list}")
@@ -30,11 +28,13 @@ Pin: {pin}
 
     def Login(self):
         self.login_num = ""
-        if len(self._account_list) > 0:
+        if len(self.account_list) > 0:
             try:
                 while True:
                     num_input = input("Please Input your Account Number: ")
                     pin_input = input("Please Input your Pin: ")
+                    num = num.strip()
+                    pin = pin.strip()
                     # Compare input to existing Accounts in Accounts List
                     for item in self.account_list:
                         if item[0] == num_input or int(item[0]) == int(num_input):
@@ -59,7 +59,7 @@ Pin: {pin}
                     return
 
     def main(self):
-        super().execute_table(super().create_table())
+        super().create_table()
         end1 = True
         end2 = True
         while end1:
