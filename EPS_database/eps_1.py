@@ -5,12 +5,12 @@ import time
 import sqlite3
 
 class EPSAccount(Account):
-
     def __init__(self):
         super().__init__()
         self.account_list = []
         self.balance_list = []
         self.login_num = ""
+        self.login_pin = ""
 
     def create_account(self):
         num = super().create_number()
@@ -20,7 +20,7 @@ class EPSAccount(Account):
         super().add_user_to_account(num, pin, super().show_balance())
         # print(f"Accounts: {self._account_list}")
         # print(f"Account balances: {self._balance_list}")
-        os.system('cls')
+         
         print(f"""Account created:
 Number: {num}
 Pin: {pin}
@@ -34,22 +34,21 @@ Pin: {pin}
             num = num.strip()
             pin = pin.strip()
             # Compare input to existing Accounts in Accounts List
-            
             if super().login(num, pin).fetchone():
                 print("Login Successfully")
+                self.login_pin = pin
                 self.login_num = num
-                
                 return True
             else:
                 print("Login failed, Account Details invalid")
  
         time.sleep(2)
-        os.system('cls')
+         
 
     def Balance(self):
-        self.balance = super().get_balance(self.login_num).fetchone()
-        self.balance = self.balance[0] + self.balance[1]
-        print(f"Your current Balance is: {self.balance}\n")
+        self.balance = super().get_balance(self.login_num, self.login_pin).fetchall()
+        
+        print(f"Your current Balance is: {self.balance[0][0]}€\n")
         time.sleep(2)
         return
 
@@ -70,7 +69,7 @@ Pin: {pin}
             elif menu_input == "2":
                 if self.Login():
                     time.sleep(1)
-                    os.system('cls')
+                     
                     while end2:
                         menu2_input = input(f"""Logged in as: {self.login_num}
     1. show balance
@@ -84,7 +83,7 @@ Pin: {pin}
                         elif menu2_input == "2":
                             print("You've been logged out")
                             time.sleep(1)
-                            os.system('cls')
+                             
                             end2 = False
                         elif menu2_input == "0":
                             os.system("cls")
@@ -100,7 +99,11 @@ Pin: {pin}
             else:
                 print("The Input is invalid")
 
-
+        
+        
 if __name__ == '__main__':
+
     a = EPSAccount()
+    
+    a.balance = 49.99
     a.main()

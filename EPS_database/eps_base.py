@@ -13,13 +13,18 @@ class Account(DatabaseInterface):
         self.choice = ""
     def create_pin(self):
         pin = ""
-        breakk = True
         while len(pin) != 4:
             pin = ''.join((secrets.choice(string.digits) for i in range(4)))
         self.pin = pin
         return self.pin
 
     def create_number(self):
+        number = super().Select_latest().fetchall()
+        if number != None:
+            if len(number) != 0:
+                number = int(number[0][0])
+                self.counter = number
+        
         ban = self.counter+1
         self.counter += 1
         ban = str(ban)
