@@ -7,20 +7,26 @@ import sqlite3
 class EPSAccount(Account):
     def __init__(self):
         super().__init__()
-        self.account_list = []
-        self.balance_list = []
         self.login_num = ""
         self.login_pin = ""
+        self.menu1 = """Willkommen in EPS:
+    1. Create Account
+    2. Login Account
+    0. Exit
+
+    >> """
+        self.menu2 = f"""Logged in as: {self.login_num}
+    1. show balance
+    2. Logout
+    0. Exit
+
+     >> """
 
     def create_account(self):
         num = super().create_number()
         pin = super().create_pin()
-        #self.account_list.append((num, pin))
-        #self.balance_list.append((num, super().show_balance()))
         super().add_user_to_account(num, pin, super().show_balance())
-        # print(f"Accounts: {self._account_list}")
-        # print(f"Account balances: {self._balance_list}")
-         
+        
         print(f"""Account created:
 Number: {num}
 Pin: {pin}
@@ -47,7 +53,6 @@ Pin: {pin}
 
     def Balance(self):
         self.balance = super().get_balance(self.login_num, self.login_pin).fetchall()
-        
         print(f"Your current Balance is: {self.balance[0][0]}€\n")
         time.sleep(2)
         return
@@ -57,12 +62,7 @@ Pin: {pin}
         end1 = True
         end2 = True
         while end1:
-            menu_input = input("""Willkommen in EPS:
-    1. Create Account
-    2. Login Account
-    0. Exit
-
-    >> """)
+            menu_input = input(self.menu1)
             if menu_input == "1":
                 self.create_account()
                 continue
@@ -71,12 +71,7 @@ Pin: {pin}
                     time.sleep(1)
                      
                     while end2:
-                        menu2_input = input(f"""Logged in as: {self.login_num}
-    1. show balance
-    2. Logout
-    0. Exit
-
-     >> """)
+                        menu2_input = input(self.menu2)
                         if menu2_input == "1":
                             self.Balance()
                             continue
