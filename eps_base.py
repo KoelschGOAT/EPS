@@ -1,6 +1,6 @@
 import secrets
 import string
-import database
+from database import Databasee
 
 
 class Account():
@@ -19,7 +19,7 @@ class Account():
         return self.pin
 
     def create_number(self):
-        number = database.Select_latest(self).fetchall()
+        number = Databasee.Select_latest(self).fetchall()
         if number != None:
             if number != 0:
                 number = int(number[0][0])
