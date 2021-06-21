@@ -38,7 +38,7 @@ Pin: {pin}
             num = num.strip()
             pin = pin.strip()
             # Compare input to existing Accounts in Accounts List
-            if super().login(num, pin).fetchone():
+            if super().login(num, pin).fetchone() or int(super().login(num, pin).fetchone()):
                 print("Login Successfully")
                 self.login_pin = pin
                 self.login_num = num
