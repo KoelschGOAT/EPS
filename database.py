@@ -32,8 +32,10 @@ class EPSDatabase:
     @staticmethod 
     def login(num, pin):
         return EPSDatabase.execute("SELECT number from Accounts WHERE number=? AND pin=?", (num, pin))
-    
     @staticmethod 
+    def get_balance(num,pin):
+        return EPSDatabase.execute("SELECT balance FROM Accounts WHERE number=? AND pin=?", (num, pin))
+    @staticmethod
     def __del__():
         EPSDatabase.connection.close()
 
@@ -42,7 +44,3 @@ if __name__ == '__main__':
     a = Database()
     print(a.Select_latest())
     print(a.print_table())
-"""
-    def change_balance(self, num, balance):
-        return self.execute("UPDATE Accounts SET Balance = ? WHERE num = ?", (balance, num))
-"""
