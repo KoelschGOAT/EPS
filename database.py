@@ -1,10 +1,10 @@
 import sqlite3
 import os
-import time
 
-class Database:
+
+class DatabaseInterface:
     def __init__(self):
-        self.connection = sqlite3.connect(os.path.join("eps_database.db"))
+        self.connection = sqlite3.connect(os.path.join("User.db"))
         self.cursor = self.connection.cursor()
 
     def execute(self, query, data):
@@ -18,7 +18,7 @@ class Database:
         return self.cursor
 
     def create_table(self):
-        return self.execute_without("CREATE TABLE IF NOT EXISTS Accounts(id INTEGER PRIMARY KEY AUTOINCREMENT, number Text, pin TEXT, balance Decimal(6,2) DEFAULT 0)")
+        return self.execute_without("CREATE TABLE IF NOT EXISTS Accounts(id INTEGER PRIMARY KEY AUTOINCREMENT, number Text, pin TEXT, balance Decimal(6,2))")
 
     def change_balance(self, num, balance):
         """ Assigns a league_id to a user which is a foreign key """
