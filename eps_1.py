@@ -1,12 +1,11 @@
 from eps_base import Account
 from database import Database
-import os
-import time
 import sqlite3
 
 class EPSAccount(Account):
     def __init__(self):
         super().__init__()
+        self.login_num = ""
         self.login_num = ""
         self.login_pin = ""
         self.menu1 = """Willkommen in EPS:
@@ -33,7 +32,6 @@ Pin: {pin}
 """)
 
     def Login(self):
-        self.login_num = ""
         while True:
             num = input("Please Input your Account Number: ")
             pin = input("Please Input your Pin: ")
@@ -44,7 +42,7 @@ Pin: {pin}
                 print("Login Successfully")
                 self.login_pin = pin
                 self.login_num = num
-                return True
+                return 
             else:
                 print("Login failed, Account Details invalid")
  
@@ -53,7 +51,7 @@ Pin: {pin}
 
     def Balance(self):
         self.balance = super().get_balance(self.login_num, self.login_pin).fetchall()
-        print(f"Your current Balance is: {self.balance[0][0]}€\n")
+        print(f"Your current Balance is: {self.balance}€\n")
         time.sleep(2)
         return
 
