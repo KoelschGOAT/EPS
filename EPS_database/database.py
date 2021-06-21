@@ -37,6 +37,7 @@ class Database:
         return self.cursor.execute("SELECT balance from Accounts WHERE number=? AND pin=?", (num, pin))
 
     def __del__(self):
+        print("closed")
         self.connection.close()
 
 
