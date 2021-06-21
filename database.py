@@ -21,7 +21,7 @@ class Database:
 
     def create_table(self):
         return self.execute_query("CREATE TABLE IF NOT EXISTS Accounts(id INTEGER PRIMARY KEY AUTOINCREMENT, number Text, pin TEXT, balance Decimal(6,2) DEFAULT 0)")
-
+        
     def print_table():
         return self.execute_query("SELECT * FROM Accounts")
 

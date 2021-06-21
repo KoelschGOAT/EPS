@@ -1,11 +1,11 @@
 import secrets
 import string
-from database import Database
+import database
 
 
-class Account(Database):
+class Account():
     def __init__(self):
-        super().__init__()
+       
         self.ban = 0
         self.pin = 0
         self.balance = 0.0
@@ -19,8 +19,9 @@ class Account(Database):
         return self.pin
 
     def create_number(self):
-        number = super().Select_latest().fetchall()
+        number = database.Select_latest(self).fetchall()
         if number != None:
+            if number != 0:
                 number = int(number[0][0])
                 self.counter = number
         
