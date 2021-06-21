@@ -1,9 +1,9 @@
 import secrets
 import string
-from database import DatabaseInterface
+from database import Database
 
 
-class Account(DatabaseInterface):
+class Account(Database):
     def __init__(self):
         super().__init__()
         self.ban = 0
@@ -33,6 +33,7 @@ class Account(DatabaseInterface):
         return self.ban
 
     def show_balance(self):
+        
         print(self.balance)
         return self.balance
 
