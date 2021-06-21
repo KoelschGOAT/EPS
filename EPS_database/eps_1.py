@@ -1,5 +1,5 @@
 from eps_base import Account
-from database import Database
+from eps_database import Database
 import os
 import time
 import sqlite3

@@ -33,7 +33,6 @@ class Account(Database):
         return self.ban
 
     def show_balance(self):
-        
         print(self.balance)
         return self.balance
 
