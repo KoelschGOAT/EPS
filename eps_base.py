@@ -1,11 +1,11 @@
 import secrets
 import string
-from database import DatabaseInterface
+from database import EPSDatabase as db
 
 
-class Account(DatabaseInterface):
+class Account():
     def __init__(self):
-        super().__init__()
+       
         self.ban = 0
         self.pin = 0
         self.balance = 0.0
@@ -19,7 +19,7 @@ class Account(DatabaseInterface):
         return self.pin
 
     def create_number(self):
-        number = super().Select_latest().fetchall()
+        number = db.Select_latest().fetchall()
         if number != None:
             if len(number) != 0:
                 number = int(number[0][0])
@@ -33,7 +33,7 @@ class Account(DatabaseInterface):
         return self.ban
 
     def show_balance(self):
-        print(self.balance)
+        #print(self.balance)
         return self.balance
 
     
