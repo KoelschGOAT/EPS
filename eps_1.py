@@ -1,5 +1,4 @@
 from eps_base import Account
-from database import Database
 import sqlite3
 
 class EPSAccount(Account):
