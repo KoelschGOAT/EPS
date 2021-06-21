@@ -8,6 +8,7 @@ class Database:
         self.connection = sqlite3.connect(os.path.join("eps_database.db"))
         self.cursor = self.connection.cursor()
 
+
     def execute(self, query, data):
         self.cursor.execute(query, data)
         self.connection.commit()

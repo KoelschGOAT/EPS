@@ -81,14 +81,12 @@ Pin: {pin}
                              
                             end2 = False
                         elif menu2_input == "0":
-                            os.system("cls")
                             print("Thank you for using EPS")
                             quit()
                         else:
                             print("The Input is invalid")
 
             elif menu_input == "0":
-                os.system("cls")
                 print("Thank you for using EPS")
                 quit()
             else:
