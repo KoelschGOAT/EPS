@@ -1,6 +1,6 @@
 import secrets
 import string
-from database import Databasee
+from database import EPSDatabase as db
 
 
 class Account():
@@ -19,9 +19,9 @@ class Account():
         return self.pin
 
     def create_number(self):
-        number = Databasee.Select_latest(self).fetchall()
+        number = db.Select_latest().fetchall()
         if number != None:
-            if number != 0:
+            if len(number) != 0:
                 number = int(number[0][0])
                 self.counter = number
         
