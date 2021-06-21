@@ -2,7 +2,11 @@ import sqlite3
 import os
 import time
 
+<<<<<<< HEAD
 class Database:
+=======
+class DatabaseInterface:
+>>>>>>> origin/master
     def __init__(self):
         self.connection = sqlite3.connect(os.path.join("eps_database.db"))
         self.cursor = self.connection.cursor()
