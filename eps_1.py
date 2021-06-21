@@ -6,7 +6,6 @@ class EPSAccount(Account):
     def __init__(self):
         super().__init__()
         self.login_num = ""
-        self.login_num = ""
         self.login_pin = ""
         self.menu1 = """Willkommen in EPS:
     1. Create Account
@@ -14,12 +13,6 @@ class EPSAccount(Account):
     0. Exit
 
     >> """
-        self.menu2 = f"""Logged in as: {self.login_num}
-    1. show balance
-    2. Logout
-    0. Exit
-
-     >> """
 
     def create_account(self):
         num = super().create_number()
@@ -50,7 +43,7 @@ Pin: {pin}
          
 
     def Balance(self):
-        self.balance = EPSDatabase.get_balance(self,self.login_num, self.login_pin).fetchall()
+        self.balance = EPSDatabase.get_balance(self.login_num, self.login_pin).fetchall()
         print(f"Your current Balance is: {self.balance[0][0]}€\n")
         time.sleep(2)
         return 
@@ -69,7 +62,12 @@ Pin: {pin}
                     time.sleep(1)
                      
                     while end2:
-                        menu2_input = input(self.menu2)
+                        menu2_input = input(f"""Logged in as: {self.login_num}
+    1. show belence
+    2. Logout
+    0. Exit
+
+     >> """)
                         if menu2_input == "1":
                             self.Balance()
                             continue
