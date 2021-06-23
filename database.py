@@ -17,7 +17,9 @@ class EPSDatabase:
         EPSDatabase.cursor.execute(query)
         EPSDatabase.connection.commit()
         return EPSDatabase.cursor
-
+    @staticmethod
+    def hello():
+        return EPSDatabase.cursor("SELECT * FROM Accounts")
     @staticmethod
     def create_table():
         return EPSDatabase.execute_query("CREATE TABLE IF NOT EXISTS Accounts(id INTEGER PRIMARY KEY AUTOINCREMENT, number Text, pin TEXT, balance Decimal(6,2) DEFAULT 0)")
@@ -41,7 +43,7 @@ class EPSDatabase:
     @staticmethod
     def get_balance(num, pin):
         return EPSDatabase.execute("SELECT balance FROM Accounts WHERE number=? AND pin=?", (num, pin))
-   
+
     @staticmethod
     def get_number(num):
         return EPSDatabase.execute("SELECT number FROM Accounts WHERE number=?", (num,))
@@ -51,7 +53,7 @@ class EPSDatabase:
     @staticmethod
     def balance_sub(num, balance):
         return EPSDatabase.execute("UPDATE Accounts SET balance = balance - ? WHERE number = ?", (balance, num))
-    
+
     @staticmethod
     def close():
         EPSDatabase.connection.close()
@@ -60,4 +62,3 @@ class EPSDatabase:
 if __name__ == '__main__':
     a = EPSDatabase()
     print(a.Select_latest())
-    
