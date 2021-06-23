@@ -1,6 +1,11 @@
 import sqlite3
 import os
+import time
 
+class Database:
+    def __init__(self):
+        self.connection = sqlite3.connect(os.path.join("eps_database.db"))
+        self.cursor = self.connection.cursor()
 
 class EPSDatabase:
     connection = sqlite3.connect(os.path.join("eps_database.db"))
@@ -60,5 +65,5 @@ class EPSDatabase:
 
 
 if __name__ == '__main__':
-    a = EPSDatabase()
+    a = DatabaseInterface()
     print(a.Select_latest())
