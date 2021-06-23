@@ -2,10 +2,7 @@ import sqlite3
 import os
 import time
 
-class Database:
-    def __init__(self):
-        self.connection = sqlite3.connect(os.path.join("eps_database.db"))
-        self.cursor = self.connection.cursor()
+
 
 class EPSDatabase:
     connection = sqlite3.connect(os.path.join("eps_database.db"))
@@ -22,9 +19,6 @@ class EPSDatabase:
         EPSDatabase.cursor.execute(query)
         EPSDatabase.connection.commit()
         return EPSDatabase.cursor
-    @staticmethod
-    def hello():
-        return EPSDatabase.cursor("SELECT * FROM Accounts")
     @staticmethod
     def create_table():
         return EPSDatabase.execute_query("CREATE TABLE IF NOT EXISTS Accounts(id INTEGER PRIMARY KEY AUTOINCREMENT, number Text, pin TEXT, balance Decimal(6,2) DEFAULT 0)")
