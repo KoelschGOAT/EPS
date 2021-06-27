@@ -23,7 +23,7 @@ class Account():
         number = EPSDatabase.Select_latest().fetchall()
         if number != None:
             if len(number) != 0:
-                number = int(number[0])
+                number = int(number[0][0])
                 self.counter = number
         
         ban = self.counter+1

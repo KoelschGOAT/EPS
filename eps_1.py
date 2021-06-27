@@ -27,9 +27,11 @@ Pin: {pin}
     def Login(self):
         while True:
             num = input("Please Input your Account Number: ")
+            num = num.zfill(8)
             pin = input("Please Input your Pin: ")
             num = num.strip()
             pin = pin.strip()
+            #print(EPSDatabase.login(num, pin).fetchone())
             # Compare input to existing Accounts in Accounts
             if EPSDatabase.login(num, pin).fetchone():
                 print("Login Successfully")
