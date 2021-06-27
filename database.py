@@ -59,4 +59,4 @@ class EPSDatabase:
 
 if __name__ == '__main__':
     a = EPSDatabase()
-    print(a.Select_latest().fetchone())
+    print(a.Select_latest().fetchall())
