@@ -44,7 +44,7 @@ Pin: {pin}
 
     def print_Balance(self):
         self.balance = EPSDatabase.get_balance(self.login_num, self.login_pin).fetchall()
-        self.balance = round(self.balance[0][0])
+        self.balance = round(self.balance[0][0],2)
         print(f"Your current Balance is: {self.balance}€\n")
         return self.balance
 
@@ -61,7 +61,7 @@ Pin: {pin}
                 EPSDatabase.balance_sub(self.login_num, int(amount_to_send))
                 print("transaction Successfully!")
             else: print("Not a valid Account")
-        else: print("Invalid amount")
+        else: print("Invalid amount") 
         
 
 

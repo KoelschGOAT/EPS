@@ -1,7 +1,6 @@
 import sqlite3
 import os
 import time
-awdawd
 
 
 class EPSDatabase:
@@ -59,5 +58,5 @@ class EPSDatabase:
 
 
 if __name__ == '__main__':
-    a = DatabaseInterface()
-    print(a.Select_latest())
+    a = EPSDatabase()
+    print(a.Select_latest().fetchone())
