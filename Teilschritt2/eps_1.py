@@ -13,16 +13,20 @@ class EPSAccount(Account):
     0. Exit
 
     >> """
+        menu2 = f"""Logged in as: {self.login_num}
+    1. show belence
+    2. Logout
+    0. Exit
 
+     >> """
     def create_account(self):
         num = super().create_number()
         pin = super().create_pin()
-        EPSDatabase.add_user_to_account(num, pin, super().show_balance())
-        
+        EPSDatabase.insert_data(num, pin, super().show_balance())
         print(f"""Account created:
-Number: {num}
-Pin: {pin}
-""")
+    Number: {num}
+    Pin: {pin}
+    """)
 
     def Login(self):
         while True:
@@ -41,7 +45,7 @@ Pin: {pin}
             else:
                 print("Login failed, Account Details invalid")
  
-        time.sleep(2)
+       
          
 
     def print_Balance(self):
@@ -50,21 +54,6 @@ Pin: {pin}
         print(f"Your current Balance is: {self.balance}€\n")
         return self.balance
 
-
-    def transaction(self):
-        self.print_Balance()
- 
-        account_to_send = input(f"Enter an Account you want to send money to: ")
-        amount_to_send = input(f"Enter the Amount you want to send: ")
-        
-        if self.balance - int(amount_to_send) >= 0 and account_to_send != self.login_num:
-            if EPSDatabase.get_number(account_to_send).fetchone():
-                EPSDatabase.balance_addition(account_to_send, int(amount_to_send))
-                EPSDatabase.balance_sub(self.login_num, int(amount_to_send))
-                print("transaction Successfully!")
-            else: print("Not a valid Account")
-        else: print("Invalid amount") 
-        
 
 
     def main(self):
@@ -79,16 +68,9 @@ Pin: {pin}
                 continue
             elif menu_input == "2":
                 if self.Login():
-                    time.sleep(1)
-                     
+                                       
                     while end2:
-                        menu2_input = input(f"""Logged in as: {self.login_num}
-    1. show belence
-    2. Logout
-    3. Send Money
-    0. Exit
-
-     >> """)
+                        menu2_input = input()
                         if menu2_input == "1":
                             self.print_Balance()
                             continue
@@ -97,13 +79,11 @@ Pin: {pin}
                             time.sleep(1)
                         
                             end2 = False
-                        elif menu2_input == "3":
-                            self.transaction()
                         elif menu2_input == "0":
                             quit()
                         else:
                             print("The Input is invalid")
-
+                
             elif menu_input == "0":
                 quit()
             else:
@@ -116,6 +96,4 @@ Pin: {pin}
 if __name__ == '__main__':
 
     a = EPSAccount()
-    
-    a.balance = 49.99
     a.main()

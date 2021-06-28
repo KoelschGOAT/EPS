@@ -27,7 +27,7 @@ class EPSDatabase:
         return EPSDatabase.execute("SELECT * FROM Accounts")
 
     @staticmethod
-    def add_user_to_account(num, pin, balance):
+    def insert_data(num, pin, balance):
         return EPSDatabase.execute("INSERT INTO Accounts (number, pin, balance) VALUES(?, ?, ?)", (num, pin, balance))
 
     @staticmethod
