@@ -44,7 +44,7 @@ Pin: {pin}
             else:
                 print("Login failed, Account Details invalid")
 
-        time.sleep(2)
+        
 
     def print_Balance(self):
         self.balance = EPSDatabase.get_balance(
@@ -58,16 +58,21 @@ Pin: {pin}
 
         account_to_send = input(
             f"Enter an Account you want to send money to: ")
-        amount_to_send = input(f"Enter the Amount you want to send: ")
+        while True:
+            try:
+                amount_to_send = int(input(f"Enter the Amount you want to send: "))
+                break
+            except ValueError:
+                print("No Number entered")
+                continue
         account_to_send = account_to_send.zfill(8)
-        if self.balance - int(amount_to_send) >= 0 and account_to_send != self.login_num:
+        if self.balance - amount_to_send >= 0 and account_to_send != self.login_num:
             if EPSDatabase.get_number(account_to_send).fetchone():
                 EPSDatabase.balance_addition(
                     account_to_send, int(amount_to_send))
                 EPSDatabase.balance_sub(self.login_num, int(amount_to_send))
                 print("transaction Successfully!")
                 self.print_Balance()
-
 
             else:
                 print("Not a valid Account")
@@ -82,7 +87,6 @@ Pin: {pin}
     def delete_account(self):
         EPSDatabase.del_account(self.login_num)
 
-    
     def main(self):
         EPSDatabase.create_table()
         end1 = True
@@ -115,6 +119,7 @@ Pin: {pin}
                             self.transaction()
                         elif menu2_input == "4":
                             self.delete_account()
+                            end2 = False
                         elif menu2_input == "5":
                             print("You've been logged out")
                             time.sleep(1)

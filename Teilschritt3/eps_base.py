@@ -3,15 +3,15 @@ import string
 from database import EPSDatabase
 
 
-
 class Account():
     def __init__(self):
-        
+
         self.ban = 0
         self.pin = 0
         self.balance = 0.0
         self.counter = 0
         self.choice = ""
+
     def create_pin(self):
         pin = ""
         while len(pin) != 4:
@@ -25,7 +25,7 @@ class Account():
             if len(number) != 0:
                 number = int(number[0][0])
                 self.counter = number
-        
+
         ban = self.counter+1
         ban = str(ban)
         ban = ban.zfill(8)
@@ -33,15 +33,15 @@ class Account():
         return self.ban
 
     def show_balance(self):
-        #print(self.balance)
+        # print(self.balance)
         return self.balance
 
-    
+
 if __name__ == "__main__":
-    
+
     a = Account()
     print(a.create_number())
     print(a.create_pin())
     print(f"Your Current Balance: {a.show_balance()}€")
-    
+
     #print(f"Your Current Balance: {a.show_balance()}€")

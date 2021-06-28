@@ -4,7 +4,8 @@ import time
 
 
 class EPSDatabase:
-    connection = sqlite3.connect(os.path.join("Teilschritt3","eps_database.db"))
+    connection = sqlite3.connect(
+        os.path.join("Teilschritt3", "eps_database.db"))
     cursor = connection.cursor()
 
     @staticmethod
@@ -54,9 +55,11 @@ class EPSDatabase:
     @staticmethod
     def balance_sub(num, balance):
         return EPSDatabase.execute("UPDATE Accounts SET balance = balance - ? WHERE number = ?", (balance, num))
+
     @staticmethod
     def del_account(num):
-        return EPSDatabase.execute("DELETE FROM Accounts WHERE num = ?", (num,))
+        return EPSDatabase.execute("DELETE FROM Accounts WHERE number = ?", (num,))
+
     @staticmethod
     def close():
         EPSDatabase.connection.close()
