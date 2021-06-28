@@ -1,7 +1,6 @@
 import secrets
 import string
-from database import EPSDatabase
-
+from database import EPSDatabase 
 
 
 class Account():
@@ -27,6 +26,7 @@ class Account():
                 self.counter = number
         
         ban = self.counter+1
+        self.counter += 1
         ban = str(ban)
         ban = ban.zfill(8)
         self.ban = ban

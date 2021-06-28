@@ -1,6 +1,6 @@
 import sqlite3
 import os
-import time
+
 
 
 class EPSDatabase:
@@ -27,7 +27,7 @@ class EPSDatabase:
         return EPSDatabase.execute("SELECT * FROM Accounts")
 
     @staticmethod
-    def insert_data(num, pin, balance):
+    def add_user_to_account(num, pin, balance):
         return EPSDatabase.execute("INSERT INTO Accounts (number, pin, balance) VALUES(?, ?, ?)", (num, pin, balance))
 
     @staticmethod
@@ -46,17 +46,10 @@ class EPSDatabase:
     def get_number(num):
         return EPSDatabase.execute("SELECT number FROM Accounts WHERE number=?", (num,))
     @staticmethod
-    def balance_addition(num, balance):
-        return EPSDatabase.execute("UPDATE Accounts SET balance = balance + ? WHERE number = ?", (balance, num))
-    @staticmethod
-    def balance_sub(num, balance):
-        return EPSDatabase.execute("UPDATE Accounts SET balance = balance - ? WHERE number = ?", (balance, num))
-
-    @staticmethod
     def close():
         EPSDatabase.connection.close()
 
 
 if __name__ == '__main__':
     a = EPSDatabase()
-    print(a.Select_latest().fetchall())
+    print(a.Select_latest())

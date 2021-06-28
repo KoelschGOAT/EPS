@@ -6,7 +6,7 @@ from database import EPSDatabase
 
 class Account():
     def __init__(self):
-        self.epsdb = EPSDatabase()
+        
         self.ban = 0
         self.pin = 0
         self.balance = 0.0
@@ -20,7 +20,7 @@ class Account():
         return self.pin
 
     def create_number(self):
-        number = self.epsdb.Select_latest().fetchall()
+        number = EPSDatabase.Select_latest().fetchall()
         if number != None:
             if len(number) != 0:
                 number = int(number[0][0])
