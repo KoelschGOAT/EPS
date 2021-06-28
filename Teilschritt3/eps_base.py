@@ -20,12 +20,17 @@ class Account():
         return self.pin
 
     def create_number(self):
-        number = EPSDatabase.Select_latest().fetchall()
+        number = EPSDatabase.hightest().fetchall()
         if number != None:
             if len(number) != 0:
                 number = int(number[0][0])
                 self.counter = number
-
+        curr = 0
+        for value in EPSDatabase.print_table().fetchall():
+            if int(value[0]) > curr:
+                curr = int(value[0])
+        print(curr)
+        
         ban = self.counter+1
         ban = str(ban)
         ban = ban.zfill(8)

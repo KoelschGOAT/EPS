@@ -142,6 +142,5 @@ Pin: {pin}
 if __name__ == '__main__':
 
     a = EPSAccount()
-
-    a.balance = 49.99
     a.main()
+    

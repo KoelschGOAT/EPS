@@ -26,7 +26,7 @@ class EPSDatabase:
 
     @staticmethod
     def print_table():
-        return EPSDatabase.execute("SELECT * FROM Accounts")
+        return EPSDatabase.execute_query("SELECT number FROM Accounts")
 
     @staticmethod
     def insert_data(num, pin, balance):
@@ -35,7 +35,9 @@ class EPSDatabase:
     @staticmethod
     def Select_latest():
         return EPSDatabase.execute_query("SELECT number FROM Accounts ORDER BY number DESC LIMIT 1")
-
+    @staticmethod
+    def hightest():
+        return EPSDatabase.execute_query("SELECT MAX(CAST(number AS INT)) FROM Accounts")
     @staticmethod
     def login(num, pin):
         return EPSDatabase.execute("SELECT number from Accounts WHERE number=? AND pin=?", (num, pin))
@@ -59,7 +61,9 @@ class EPSDatabase:
     @staticmethod
     def del_account(num):
         return EPSDatabase.execute("DELETE FROM Accounts WHERE number = ?", (num,))
-
+    @staticmethod
+    def double():
+        return EPSDatabase.execute_query("SELECT pin,COUNT(*) FROM Accounts GROUP BY pin ORDER BY COUNT(*) DESC")
     @staticmethod
     def close():
         EPSDatabase.connection.close()
