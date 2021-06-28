@@ -4,7 +4,7 @@ import os
 
 
 class EPSDatabase:
-    connection = sqlite3.connect(os.path.join("eps_database.db"))
+    connection = sqlite3.connect(os.path.join("Teilschritt2","eps_database.db"))
     cursor = connection.cursor()
 
     @staticmethod
